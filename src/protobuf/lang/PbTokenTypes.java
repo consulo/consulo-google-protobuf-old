@@ -33,7 +33,6 @@ public interface PbTokenTypes {
     IElementType STRING_LITERAL = new PbElementType("STRING_LITERAL");
     IElementType WRONG_STRING_LITERAL = new PbElementType("WRONG_STRING_LITERAL");
     TokenSet STRING_LITERALS = TokenSet.create(STRING_LITERAL,WRONG_STRING_LITERAL);
-    TokenSet WRONG_STRING_LITERALS = TokenSet.create(WRONG_STRING_LITERAL);
 
     //braces
     IElementType OPEN_BLOCK = new PbElementType("OPEN_BLOCK");

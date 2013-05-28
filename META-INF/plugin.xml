@@ -4,6 +4,7 @@
     <name>Google Protocol Buffers support</name>
     <version>0.5.4</version>
     <category>Custom Languages</category>
+	<depends>org.consulo.java</depends>
     <description>
         <![CDATA[
         <p>
@@ -49,9 +50,6 @@
     </change-notes>
 
     <application-components>
-        <component>
-            <implementation-class>protobuf.PbLoader</implementation-class>
-        </component>
         <component>
             <implementation-class>protobuf.settings.application.PbCompilerApplicationSettings</implementation-class>
         </component>

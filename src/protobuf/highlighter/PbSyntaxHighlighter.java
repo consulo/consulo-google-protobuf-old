@@ -22,7 +22,6 @@ public class PbSyntaxHighlighter extends SyntaxHighlighterBase{
     static {
         safeMap(ATTRIBUTES, PbTokenTypes.COMMENTS, PbDefaultHighlighter.LINE_COMMENT_ATTR_KEY);
 		safeMap(ATTRIBUTES, PbTokenTypes.STRING_LITERALS, PbDefaultHighlighter.STRING_ATTR_KEY);
-		safeMap(ATTRIBUTES, PbTokenTypes.WRONG_STRING_LITERALS, PbDefaultHighlighter.WRONG_STRING_ATTR_KEY);
 		safeMap(ATTRIBUTES, PbTokenTypes.BAD_CHARACTERS, PbDefaultHighlighter.BAD_CHARACTER_ATTR_KEY);
 		safeMap(ATTRIBUTES, PbTokenTypes.NUMBERS, PbDefaultHighlighter.NUMBER_ATTR_KEY);
 		safeMap(ATTRIBUTES, PbTokenTypes.KEYWORDS, PbDefaultHighlighter.KEYWORD_ATTR_KEY);

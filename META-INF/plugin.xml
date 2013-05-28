@@ -11,8 +11,6 @@
         </p>
         ]]>
     </description>
-    <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
-    <idea-version since-build="111.69"/><!-- Idea 11 -->
     <change-notes>
         <![CDATA[
         <p>0.5</p>
@@ -72,14 +70,12 @@
     </actions>
 
     <extensions defaultExtensionNs="com.intellij">
-        <facetType implementation="protobuf.facet.PbFacetType"/>
         <fileTemplateGroup implementation="protobuf.PbFileTemplateProvider"/>
         <fileTypeFactory implementation="protobuf.file.PbFileTypeFactory"/>
-        <framework.detector implementation="protobuf.PbFrameworkDetector"/>
         <syntaxHighlighter key="Protobuf" implementationClass="protobuf.highlighter.PbSyntaxHighlighter"/>
         <annotator language="Protobuf" implementationClass="protobuf.annotator.PbAnnotator"/>
         <compilerSettingsFactory implementation="protobuf.compiler.PbCompilerSettingsFactory"/>
-        <compiler implementation="protobuf.compiler.PbCompiler"/>
+      <!--  <compiler implementation="protobuf.compiler.PbCompiler"/>   -->
         <lang.braceMatcher language="Protobuf" implementationClass="protobuf.highlighter.PbBraceMatcher"/>
         <lang.parserDefinition language="Protobuf" implementationClass="protobuf.lang.parser.PbParserDefinition"/>
         <lang.formatter language="Protobuf" implementationClass="protobuf.formatter.PbFormattingModelBuilder"/>

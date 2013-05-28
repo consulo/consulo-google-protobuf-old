@@ -1,9 +1,9 @@
 package protobuf.compiler;
 
+import org.jetbrains.annotations.NotNull;
 import com.intellij.openapi.compiler.CompilerManager;
 import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.project.Project;
-import org.jetbrains.annotations.NotNull;
 import protobuf.file.PbFileType;
 
 /**
@@ -23,7 +23,7 @@ public class PbCompilerLoader implements ProjectComponent {
         CompilerManager compilerManager = CompilerManager.getInstance(myProject);
         compilerManager.addCompilableFileType(PbFileType.PROTOBUF_FILE_TYPE);
         compilerManager.addBeforeTask(new PbPrecompileTask());
-        compilerManager.addCompiler(new PbCompiler(myProject));
+       // compilerManager.addCompiler(new PbCompiler(myProject));
     }
 
     @Override

@@ -1,62 +1,22 @@
 package protobuf.compiler;
 
-import com.intellij.compiler.CompilerConfiguration;
-import com.intellij.compiler.impl.CompilerUtil;
-import com.intellij.facet.FacetManager;
-import com.intellij.ide.util.DirectoryUtil;
-import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.application.Result;
-import com.intellij.openapi.application.RunResult;
-import com.intellij.openapi.application.WriteAction;
-import com.intellij.openapi.compiler.*;
-import com.intellij.openapi.diagnostic.Logger;
-import com.intellij.openapi.module.Module;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.roots.ModuleRootManager;
-import com.intellij.openapi.roots.ProjectFileIndex;
-import com.intellij.openapi.roots.ProjectRootManager;
-import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.util.SystemInfo;
-import com.intellij.openapi.util.io.StreamUtil;
-import com.intellij.openapi.vfs.LocalFileSystem;
-import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.PsiDirectory;
-import com.intellij.psi.PsiManager;
-import com.intellij.util.IncorrectOperationException;
-import org.jetbrains.annotations.NotNull;
-import protobuf.PbBundle;
-import protobuf.facet.PbFacet;
-import protobuf.facet.PbFacetType;
-import protobuf.file.PbFileType;
-import protobuf.settings.application.PbCompilerApplicationSettings;
-import protobuf.settings.facet.ProtobufFacetConfiguration;
-
-import java.io.DataInput;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author Nikolay Matveev
  * Date: Apr 5, 2010
  */
-public class PbCompiler implements SourceGeneratingCompiler {
+public class PbCompiler /*implements SourceGeneratingCompiler*/ {
 
-    private final static Logger LOG = Logger.getInstance(PbCompiler.class.getName());
+ /*   private final static Logger LOG = Logger.getInstance(PbCompiler.class.getName());
 
     private static final GenerationItem[] EMPTY_GENERATION_ITEM_ARRAY = new GenerationItem[]{};
-
+         */
     private static final String PROTOC_WINDOWS = "protoc.exe";
     private static final String PROTOC_LINUX = "protoc";
     private static final String PROTOC_MAC = "protoc";
-
+	 /*
 
     private static final Matcher ERROR_IN_LINE_MATCHER = Pattern.compile("[^:]*:[0-9]*:[0-9]*:.*").matcher("");
     private static final Matcher ERROR_IN_FILE_MATCHER = Pattern.compile("[^:]*:[^:]*").matcher("");
@@ -64,13 +24,13 @@ public class PbCompiler implements SourceGeneratingCompiler {
     Project myProject;
 
     PbCompilerApplicationSettings compilerAppSettings;
-
+                                    */
     public PbCompiler(Project project) {
-        myProject = project;
+       /* myProject = project;
 
-        compilerAppSettings = ApplicationManager.getApplication().getComponent(PbCompilerApplicationSettings.class);
+        compilerAppSettings = ApplicationManager.getApplication().getComponent(PbCompilerApplicationSettings.class);*/
     }
-
+	                                                                                                                  /*
     @Override
     public GenerationItem[] getGenerationItems(CompileContext compileContext) {
         final ProjectFileIndex fileIndex = ProjectRootManager.getInstance(myProject).getFileIndex();
@@ -210,12 +170,10 @@ public class PbCompiler implements SourceGeneratingCompiler {
             LOG.info("No facets detected for compilation.  Giving up on configuration check.");
             return true;
         }
-        
+
         // Check if the compiler supports current operating system.
         if (getCompilerExecutableName() == null) {
-            Messages.showErrorDialog(PbBundle.message(
-                    "compiler.validate.error.unsupported.os"),
-                    PbBundle.message("compiler.validate.error.title"));
+            Messages.showErrorDialog(PbBundle.message("compiler.validate.error.unsupported.os"), PbBundle.message("compiler.validate.error.title"));
             return false;
         }
 
@@ -305,7 +263,7 @@ public class PbCompiler implements SourceGeneratingCompiler {
 
         return true;
     }
-
+                                   */
     //todo for linux and mac
 
     public static String getCompilerExecutableName() {
@@ -319,7 +277,7 @@ public class PbCompiler implements SourceGeneratingCompiler {
         return null;
     }
 
-    private String getPathToCompiler() {
+  /*  private String getPathToCompiler() {
         return compilerAppSettings.PATH_TO_COMPILER;
     }
 
@@ -351,6 +309,6 @@ public class PbCompiler implements SourceGeneratingCompiler {
     public VirtualFile getPresentableFile(CompileContext context, Module module, VirtualFile outputRoot, VirtualFile generatedFile) {
         // TODO: Map the generated file back to the original file.
         return generatedFile;
-    }
+    }   */
 
 }

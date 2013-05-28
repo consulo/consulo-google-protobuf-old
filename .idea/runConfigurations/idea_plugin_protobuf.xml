@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="idea-plugin-protobuf" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
-    <module name="idea-plugin-protobuf" />
+    <module name="consulo-protobuf" />
     <option name="VM_PARAMETERS" value="-Xms128m -Xmx512m -XX:MaxPermSize=250m -ea" />
     <option name="PROGRAM_PARAMETERS" value="" />
     <log_file path="$USER_HOME$/.IdeaIC10/system-103/plugins-sandbox/system/log/idea.log" checked="false" skipped="true" show_all="false" alias="IDEA LOG" />

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/idea-plugin-protobuf.iml" filepath="$PROJECT_DIR$/idea-plugin-protobuf.iml" />
+      <module fileurl="file://$PROJECT_DIR$/consulo-protobuf.iml" filepath="$PROJECT_DIR$/consulo-protobuf.iml" />
     </modules>
   </component>
 </project>

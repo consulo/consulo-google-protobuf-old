@@ -1,14 +1,13 @@
 package protobuf.compiler;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import com.intellij.compiler.CompilerWorkspaceConfiguration;
 import com.intellij.openapi.compiler.CompileContext;
 import com.intellij.openapi.compiler.CompileTask;
-import com.intellij.openapi.compiler.GeneratingCompiler;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.project.Project;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 /**
  * A precompile task for the Protobuffer compiler.
@@ -36,13 +35,13 @@ public class PbPrecompileTask implements CompileTask {
             // Do nothing.
         }
 
-        if (useOutOfProcessBuild) {
+      /*  if (useOutOfProcessBuild) {
             // When using the out of process build, kick off the {@PBCompiler protobuffers generating compiler}.
             // When using the internal compiler, the {@PBCompiler} is invoked directly by IDEA.
             PbCompiler compiler = new PbCompiler(project);
             GeneratingCompiler.GenerationItem[] generationItems = compiler.getGenerationItems(context);
             compiler.generate(context, generationItems, null);
-        }
+        }   */
         return result;
     }
 

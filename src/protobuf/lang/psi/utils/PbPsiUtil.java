@@ -1,22 +1,33 @@
 package protobuf.lang.psi.utils;
 
+import static protobuf.lang.PbElementTypes.COMMENTS;
+import static protobuf.lang.PbElementTypes.WHITE_SPACES;
+
+import java.util.ArrayList;
+
+import org.consulo.psi.PsiPackage;
+import org.jetbrains.annotations.NotNull;
 import com.intellij.lang.ASTNode;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.project.Project;
-import com.intellij.psi.*;
+import com.intellij.psi.JavaPsiFacade;
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiErrorElement;
+import com.intellij.psi.PsiFileFactory;
+import com.intellij.psi.PsiJavaPackage;
 import com.intellij.psi.scope.PsiScopeProcessor;
 import com.intellij.psi.tree.IElementType;
-import org.jetbrains.annotations.NotNull;
 import protobuf.file.PbFileType;
-import protobuf.lang.psi.api.*;
+import protobuf.lang.psi.api.PbFile;
+import protobuf.lang.psi.api.PbPsiElement;
 import protobuf.lang.psi.api.auxiliary.PbBlockHolder;
 import protobuf.lang.psi.api.block.PbBlock;
-import protobuf.lang.psi.api.declaration.*;
+import protobuf.lang.psi.api.declaration.PbExtendDef;
+import protobuf.lang.psi.api.declaration.PbFieldDef;
+import protobuf.lang.psi.api.declaration.PbGroupDef;
+import protobuf.lang.psi.api.declaration.PbImportDef;
+import protobuf.lang.psi.api.declaration.PbMessageDef;
 import protobuf.lang.psi.api.reference.PbRef;
-
-import static protobuf.lang.PbElementTypes.*;
-
-import java.util.ArrayList;
 
 /**
  * @author Nikolay Matveev
@@ -30,7 +41,7 @@ public abstract class PbPsiUtil {
 
     public static PbFile[] EMPTY_FILE_ARRAY = new PbFile[0];
 
-    public static PsiPackage[] EMPTY_PACKAGE_ARRAY = new PsiPackage[0];
+    public static PsiJavaPackage[] EMPTY_PACKAGE_ARRAY = PsiJavaPackage.EMPTY_ARRAY;
 
     public static void treeWalkUp(PsiScopeProcessor processor, PsiElement curElement) {
 

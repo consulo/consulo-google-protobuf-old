@@ -1,9 +1,13 @@
 package protobuf.settings.application;
 
-import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.components.*;
-import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.jetbrains.annotations.NotNull;
+import com.intellij.openapi.application.ApplicationManager;
+import com.intellij.openapi.components.ApplicationComponent;
+import com.intellij.openapi.components.PersistentStateComponent;
+import com.intellij.openapi.components.State;
+import com.intellij.openapi.components.Storage;
+import com.intellij.openapi.components.StorageScheme;
+import com.intellij.util.xmlb.XmlSerializerUtil;
 
 /**
  * @author Nikolay Matveev
@@ -14,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
         name = "PbCompilerApplicationSettings",
         storages = {
                 //@Storage(id = "default", file = "$APP_FILE$"),//todo [high] i am not sure about this annotation
-                @Storage(id = "dir", file = "$APP_CONFIG$/proto_compiler.xml", scheme = StorageScheme.DIRECTORY_BASED)
+                @Storage(id = "dir", file = "$APP_CONFIG$/compiler.xml", scheme = StorageScheme.DIRECTORY_BASED)
         }
 )
 public class PbCompilerApplicationSettings implements PersistentStateComponent<PbCompilerApplicationSettings>, ApplicationComponent {

@@ -1,5 +1,10 @@
 package protobuf.settings.application;
 
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import org.jetbrains.annotations.Nls;
 import com.intellij.openapi.fileChooser.FileChooserDescriptor;
 import com.intellij.openapi.fileChooser.FileElement;
 import com.intellij.openapi.options.Configurable;
@@ -11,12 +16,8 @@ import com.intellij.openapi.ui.TextComponentAccessor;
 import com.intellij.openapi.ui.TextFieldWithBrowseButton;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.VirtualFile;
-import org.jetbrains.annotations.Nls;
-import protobuf.PbIcons;
-import protobuf.compiler.PbCompiler;
 import protobuf.PbBundle;
-
-import javax.swing.*;
+import protobuf.compiler.PbCompiler;
 
 /**
  * @author Nikolay Matveev
@@ -30,8 +31,8 @@ public class PbCompilerConfigurable implements Configurable {
     PbCompilerApplicationSettings myAppSettings;
     Project myProject;
 
-    public PbCompilerConfigurable(PbCompilerApplicationSettings settings, Project project) {
-        myAppSettings = settings;
+    public PbCompilerConfigurable(Project project) {
+        myAppSettings = PbCompilerApplicationSettings.getInstance();
         myProject = project;
 
         pathField.addBrowseFolderListener(project, new ProtocExecutableBrowseFolderActionListener(project, pathField), false);
@@ -41,11 +42,6 @@ public class PbCompilerConfigurable implements Configurable {
     @Override
     public String getDisplayName() {
         return "Protocol Buffers Compiler";
-    }
-
-    //@Override
-    public Icon getIcon() {
-        return PbIcons.FILE_TYPE;
     }
 
     @Override

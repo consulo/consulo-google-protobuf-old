@@ -1,4 +1,4 @@
-<idea-plugin version="2" url="http://github.com/nnmatveev/idea-plugin-protobuf">
+<idea-plugin version="2">
     <id>com.nmatveev.idea-plugin-protobuf</id>
     <vendor>Strintec</vendor>
     <name>Google Protocol Buffers support</name>
@@ -72,7 +72,8 @@
         <fileTypeFactory implementation="protobuf.file.PbFileTypeFactory"/>
         <syntaxHighlighter key="Protobuf" implementationClass="protobuf.highlighter.PbSyntaxHighlighter"/>
         <annotator language="Protobuf" implementationClass="protobuf.annotator.PbAnnotator"/>
-        <compilerSettingsFactory implementation="protobuf.compiler.PbCompilerSettingsFactory"/>
+		<projectConfigurable instance="protobuf.settings.application.PbCompilerConfigurable" id="Protobuf"
+							 displayName="Protobuf" parentId="project.propCompiler"/>
       <!--  <compiler implementation="protobuf.compiler.PbCompiler"/>   -->
         <lang.braceMatcher language="Protobuf" implementationClass="protobuf.highlighter.PbBraceMatcher"/>
         <lang.parserDefinition language="Protobuf" implementationClass="protobuf.lang.parser.PbParserDefinition"/>

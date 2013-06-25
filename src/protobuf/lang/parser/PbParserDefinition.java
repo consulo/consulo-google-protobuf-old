@@ -42,18 +42,18 @@ public class PbParserDefinition implements ParserDefinition {
 
 
     @NotNull
-    public TokenSet getWhitespaceTokens() {
+    public TokenSet getWhitespaceTokens(LanguageVersion languageVersion) {
         return PbTokenTypes.WHITE_SPACES;
     }
 
     @NotNull
-    public TokenSet getCommentTokens() {
+    public TokenSet getCommentTokens(LanguageVersion languageVersion) {
         return PbTokenTypes.COMMENTS;
     }
 
 
     @NotNull
-    public TokenSet getStringLiteralElements() {
+    public TokenSet getStringLiteralElements(LanguageVersion languageVersion) {
         return PbTokenTypes.STRING_LITERALS;
     }
 

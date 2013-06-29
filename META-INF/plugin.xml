@@ -1,87 +1,24 @@
 <idea-plugin version="2">
-    <id>com.nmatveev.idea-plugin-protobuf</id>
-    <vendor>Strintec</vendor>
-    <name>Google Protocol Buffers support</name>
-    <version>0.5.4</version>
-    <category>Custom Languages</category>
+	<id>com.nmatveev.idea-plugin-protobuf</id>
+	<vendor>Strintec</vendor>
+	<name>Google Protocol Buffers support</name>
+	<version>0.5.4</version>
+	<category>Custom Languages</category>
 	<depends>org.consulo.java</depends>
-    <description>
-        <![CDATA[
-        <p>
-            Provides <b>Google Protocol Buffers</b> support for Java language<br>
-        </p>
-        ]]>
-    </description>
-    <change-notes>
-        <![CDATA[
-        <p>0.5</p>
-        <ul>
-            <li>
-                * Idea 11 compatibility
-            </li>
-        </ul>
-        <p>0.5.1</p>
-        <ul>
-            <li>
-                * Fixed a parsing error when parsing the Java package name of a .proto file with an java_package option element.  The error caused a cache miss during the compile state check, in turn causing generation of Java source files when not necessary.
-            </li>
-        </ul>
-        <p>0.5.2</p>
-        <ul>
-            <li>
-                * Idea 12 compatibility
-            </li>
-        </ul>
-        <p>0.5.3</p>
-        <ul>
-            <li>
-                * Idea 12 external compiler support
-                * Bug fixes
-                * Refinements, including to the proto-buffer facet detector
-            </li>
-        </ul>
-        <p>0.5.4</p>
-        <ul>
-            <li>
-                * Bug fix release to fix bug when running under IDEA 11.
-            </li>
-        </ul>
-        ]]>
-    </change-notes>
-
-    <application-components>
-        <component>
-            <implementation-class>protobuf.settings.application.PbCompilerApplicationSettings</implementation-class>
-        </component>
-    </application-components>
-
-    <project-components>
-        <component>
-            <implementation-class>protobuf.compiler.PbCompilerLoader</implementation-class>
-        </component>
-    </project-components>
-
-    <module-components>
-    </module-components>
-
-    <actions>
-    </actions>
-
-    <extensions defaultExtensionNs="com.intellij">
-        <fileTemplateGroup implementation="protobuf.PbFileTemplateProvider"/>
-        <fileTypeFactory implementation="protobuf.file.PbFileTypeFactory"/>
-        <syntaxHighlighter key="Protobuf" implementationClass="protobuf.highlighter.PbSyntaxHighlighter"/>
-        <annotator language="Protobuf" implementationClass="protobuf.annotator.PbAnnotator"/>
-		<projectConfigurable instance="protobuf.settings.application.PbCompilerConfigurable" id="Protobuf"
-							 displayName="Protobuf" parentId="project.propCompiler"/>
-      <!--  <compiler implementation="protobuf.compiler.PbCompiler"/>   -->
-        <lang.braceMatcher language="Protobuf" implementationClass="protobuf.highlighter.PbBraceMatcher"/>
-        <lang.parserDefinition language="Protobuf" implementationClass="protobuf.lang.parser.PbParserDefinition"/>
-        <lang.formatter language="Protobuf" implementationClass="protobuf.formatter.PbFormattingModelBuilder"/>
-        <lang.commenter language="Protobuf" implementationClass="protobuf.commenter.PbCommenter"/>
-        <lang.foldingBuilder language="Protobuf" implementationClass="protobuf.folding.PbFoldingBuilder"/>
-        <lang.findUsagesProvider language="Protobuf" implementationClass="protobuf.findUsages.PbFindUsagesProvider"/>
-        <lang.psiStructureViewFactory language="Protobuf"
-                                      implementationClass="protobuf.structureView.PbStructureViewBuilderProvider"/>
-    </extensions>
+	<extensions defaultExtensionNs="com.intellij">
+		<fileTemplateGroup implementation="protobuf.PbFileTemplateProvider"/>
+		<fileTypeFactory implementation="protobuf.file.PbFileTypeFactory"/>
+		<syntaxHighlighter key="Protobuf" implementationClass="protobuf.highlighter.PbSyntaxHighlighter"/>
+		<annotator language="Protobuf" implementationClass="protobuf.annotator.PbAnnotator"/>
+		<projectConfigurable instance="protobuf.compiler.PbCompilerConfigurable" id="Protobuf" displayName="Protobuf" parentId="project.propCompiler"/>
+		<projectService serviceImplementation="protobuf.compiler.PbCompilerConfiguration" serviceInterface="protobuf.compiler.PbCompilerConfiguration"/>
+		<compiler implementation="protobuf.compiler.PbCompiler"/>
+		<lang.braceMatcher language="Protobuf" implementationClass="protobuf.highlighter.PbBraceMatcher"/>
+		<lang.parserDefinition language="Protobuf" implementationClass="protobuf.lang.parser.PbParserDefinition"/>
+		<lang.formatter language="Protobuf" implementationClass="protobuf.formatter.PbFormattingModelBuilder"/>
+		<lang.commenter language="Protobuf" implementationClass="protobuf.commenter.PbCommenter"/>
+		<lang.foldingBuilder language="Protobuf" implementationClass="protobuf.folding.PbFoldingBuilder"/>
+		<lang.findUsagesProvider language="Protobuf" implementationClass="protobuf.findUsages.PbFindUsagesProvider"/>
+		<lang.psiStructureViewFactory language="Protobuf" implementationClass="protobuf.structureView.PbStructureViewBuilderProvider"/>
+	</extensions>
 </idea-plugin>

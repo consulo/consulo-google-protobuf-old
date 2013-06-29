@@ -19,7 +19,6 @@ import protobuf.lang.psi.impl.PbFileImpl;
  */
 public class PbGenerationItem implements GeneratingCompiler.GenerationItem
 {
-
 	Module myModule;
 	VirtualFile myFile;
 	boolean myIsTestSource;
@@ -85,7 +84,7 @@ public class PbGenerationItem implements GeneratingCompiler.GenerationItem
 		});
 		final String sep = System.getProperty("file.separator");
 		final String safePackageName = packageName.length() > 0 ? packageName.replaceAll("\\.", sep) : packageName;
-		String outputPath = getOutputPath() + sep + safePackageName;
+		String outputPath = PbCompilerConfiguration.getInstance(myModule.getProject()).getCompilerOutput(myModule) + sep + safePackageName;
 		boolean outputFilesExist = false;
 		for(String fileName : fileNames)
 		{
@@ -106,7 +105,6 @@ public class PbGenerationItem implements GeneratingCompiler.GenerationItem
 		return myModule;
 	}
 
-
 	@Override
 	public boolean isTestSource()
 	{
@@ -116,10 +114,5 @@ public class PbGenerationItem implements GeneratingCompiler.GenerationItem
 	public String getUrl()
 	{
 		return myFile.getUrl();
-	}
-
-	public String getOutputPath()
-	{
-		return ""; //TODO [VISTALL]
 	}
 }

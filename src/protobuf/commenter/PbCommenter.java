@@ -12,11 +12,11 @@ public class PbCommenter implements Commenter {
     }
 
     public String getBlockCommentPrefix() {
-        return "/*";  //To change body of implemented methods use File | Settings | File Templates.
+        return "/*";
     }
 
     public String getBlockCommentSuffix() {
-        return "*/";  //To change body of implemented methods use File | Settings | File Templates.
+        return "*/";
     }
 
     public String getCommentedBlockCommentPrefix() {

@@ -225,7 +225,7 @@ public class PbCompiler implements SourceGeneratingCompiler
 	{
 		if(!myCompilerConfiguration.COMPILATION_ENABLED)
 		{
-			return false;
+			return true;
 		}
 
 		// Check if the compiler supports current operating system.

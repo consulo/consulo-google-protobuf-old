@@ -1,33 +1,27 @@
 package protobuf.lang.psi.utils;
 
-import static protobuf.lang.PbElementTypes.COMMENTS;
-import static protobuf.lang.PbElementTypes.WHITE_SPACES;
-
-import java.util.ArrayList;
-
-import org.consulo.psi.PsiPackage;
-import org.jetbrains.annotations.NotNull;
 import com.intellij.lang.ASTNode;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.project.Project;
-import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiErrorElement;
 import com.intellij.psi.PsiFileFactory;
-import com.intellij.psi.PsiJavaPackage;
-import com.intellij.psi.scope.PsiScopeProcessor;
 import com.intellij.psi.tree.IElementType;
+import org.consulo.google.protobuf.module.extension.GoogleProtobufModuleExtensionUtil;
+import org.consulo.psi.PsiPackage;
+import org.jetbrains.annotations.NotNull;
 import protobuf.file.PbFileType;
 import protobuf.lang.psi.api.PbFile;
 import protobuf.lang.psi.api.PbPsiElement;
 import protobuf.lang.psi.api.auxiliary.PbBlockHolder;
 import protobuf.lang.psi.api.block.PbBlock;
-import protobuf.lang.psi.api.declaration.PbExtendDef;
-import protobuf.lang.psi.api.declaration.PbFieldDef;
-import protobuf.lang.psi.api.declaration.PbGroupDef;
-import protobuf.lang.psi.api.declaration.PbImportDef;
-import protobuf.lang.psi.api.declaration.PbMessageDef;
+import protobuf.lang.psi.api.declaration.*;
 import protobuf.lang.psi.api.reference.PbRef;
+
+import java.util.ArrayList;
+
+import static protobuf.lang.PbElementTypes.COMMENTS;
+import static protobuf.lang.PbElementTypes.WHITE_SPACES;
 
 /**
  * @author Nikolay Matveev
@@ -37,15 +31,8 @@ public abstract class PbPsiUtil {
 
     private final static Logger LOG = Logger.getInstance(PbPsiUtil.class.getName());
 
-    public static PsiElement[] EMPTY_PSI_ARRAY = new PsiElement[0];
-
     public static PbFile[] EMPTY_FILE_ARRAY = new PbFile[0];
 
-    public static PsiJavaPackage[] EMPTY_PACKAGE_ARRAY = PsiJavaPackage.EMPTY_ARRAY;
-
-    public static void treeWalkUp(PsiScopeProcessor processor, PsiElement curElement) {
-
-    }
 
     public static String getQualifiedReferenceText(PbRef ref) {
         StringBuilder sbuilder = new StringBuilder();
@@ -117,7 +104,7 @@ public abstract class PbPsiUtil {
     //resolving methods
 
     public static PsiElement getRootScope(final PsiElement element) {
-        return JavaPsiFacade.getInstance(element.getManager().getProject()).findPackage("");
+        return GoogleProtobufModuleExtensionUtil.findPackage(element, "");
     }
 
     public static PsiElement getUpperScope(final PsiElement element) {
@@ -125,8 +112,7 @@ public abstract class PbPsiUtil {
             return ((PsiPackage) element).getParentPackage();
         }
         if (element instanceof PbFile) {
-            JavaPsiFacade facade = JavaPsiFacade.getInstance(element.getManager().getProject());
-            return facade.findPackage(((PbFile) element).getPackageName());
+            return GoogleProtobufModuleExtensionUtil.findPackage(element, ((PbFile) element).getPackageName());
         }
         if (element instanceof PbPsiElement) {
             PbPsiElement scope = (PbPsiElement) element.getParent();            

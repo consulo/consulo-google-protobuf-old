@@ -1,20 +1,16 @@
 package protobuf.lang.resolve;
 
-import static protobuf.lang.psi.PbPsiEnums.ReferenceKind;
-
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiJavaPackage;
 import com.intellij.psi.PsiNamedElement;
+import org.consulo.psi.PsiPackage;
 import protobuf.lang.psi.api.PbFile;
 import protobuf.lang.psi.api.block.PbBlock;
-import protobuf.lang.psi.api.declaration.PbEnumDef;
-import protobuf.lang.psi.api.declaration.PbExtendDef;
-import protobuf.lang.psi.api.declaration.PbFieldDef;
-import protobuf.lang.psi.api.declaration.PbGroupDef;
-import protobuf.lang.psi.api.declaration.PbMessageDef;
+import protobuf.lang.psi.api.declaration.*;
 import protobuf.lang.psi.api.reference.PbRef;
 import protobuf.lang.psi.utils.PbPsiUtil;
+
+import static protobuf.lang.psi.PbPsiEnums.ReferenceKind;
 
 /**
  * @author Nikolay Matveev
@@ -33,7 +29,7 @@ public abstract class PbResolveUtil
 		{
 			return null;
 		}
-		if(scope instanceof PsiJavaPackage)
+		if(scope instanceof PsiPackage)
 		{
 			switch(kind)
 			{
@@ -53,7 +49,7 @@ public abstract class PbResolveUtil
 				{
 					//get imported files by package name and invoke this function for this files
 					PbFile containingFile = (PbFile) ref.getContainingFile();
-					if(PbPsiUtil.isSamePackage(containingFile, (PsiJavaPackage) scope))
+					if(PbPsiUtil.isSamePackage(containingFile, (PsiPackage) scope))
 					{
 						PsiElement resolveResult = resolveInScope(containingFile, ref);
 						if(resolveResult != null)
@@ -61,7 +57,7 @@ public abstract class PbResolveUtil
 							return resolveResult;
 						}
 					}
-					PbFile[] importedFiles = PbPsiUtil.getImportedFilesByPackageName(containingFile, ((PsiJavaPackage) scope).getQualifiedName());
+					PbFile[] importedFiles = PbPsiUtil.getImportedFilesByPackageName(containingFile, ((PsiPackage) scope).getQualifiedName());
 					for(PbFile importedFile : importedFiles)
 					{
 						PsiElement resolveResult = resolveInScope(importedFile, ref);
@@ -77,7 +73,7 @@ public abstract class PbResolveUtil
 					PbFile containingFile = (PbFile) ref.getContainingFile();
 					//resolve in subpackages scope
 					//alg: find subpackage and then find it in subpackages
-					PsiJavaPackage subPackage = resolveInSubPackagesScope((PsiJavaPackage) scope, refName);
+          PsiPackage subPackage = resolveInSubPackagesScope((PsiPackage) scope, refName);
 					if(subPackage != null)
 					{
 						//f(subPackage, thisFile) -> boolean
@@ -88,7 +84,7 @@ public abstract class PbResolveUtil
 						}
 					}
 					//resolve in containing file
-					if(PbPsiUtil.isSamePackage(containingFile, (PsiJavaPackage) scope))
+					if(PbPsiUtil.isSamePackage(containingFile, (PsiPackage) scope))
 					{
 						PsiElement resolveResult = resolveInScope(containingFile, ref);
 						if(resolveResult != null)
@@ -97,7 +93,7 @@ public abstract class PbResolveUtil
 						}
 					}
 					//resolve in imported files scope
-					PbFile[] importedFiles = PbPsiUtil.getImportedFilesByPackageName(containingFile, ((PsiJavaPackage) scope).getQualifiedName());
+					PbFile[] importedFiles = PbPsiUtil.getImportedFilesByPackageName(containingFile, ((PsiPackage) scope).getQualifiedName());
 					for(PbFile importedFile : importedFiles)
 					{
 						PsiElement resolveResult = resolveInScope(importedFile, ref);
@@ -206,10 +202,10 @@ public abstract class PbResolveUtil
 		return null;
 	}
 
-	public static PsiJavaPackage resolveInSubPackagesScope(final PsiJavaPackage parentPackage, String refName)
+	public static PsiPackage resolveInSubPackagesScope(final PsiPackage parentPackage, String refName)
 	{
-		PsiJavaPackage[] subPackages = parentPackage.getSubPackages();
-		for(PsiJavaPackage subPackage : subPackages)
+    PsiPackage[] subPackages = parentPackage.getSubPackages();
+		for(PsiPackage subPackage : subPackages)
 		{
 			if(subPackage.getName().equals(refName))
 			{

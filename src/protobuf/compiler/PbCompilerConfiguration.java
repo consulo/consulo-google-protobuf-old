@@ -1,12 +1,8 @@
 package protobuf.compiler;
 
-import org.consulo.lombok.annotations.ProjectService;
-import com.intellij.openapi.components.PersistentStateComponent;
-import com.intellij.openapi.components.State;
-import com.intellij.openapi.components.Storage;
-import com.intellij.openapi.components.StoragePathMacros;
-import com.intellij.openapi.components.StorageScheme;
+import com.intellij.openapi.components.*;
 import com.intellij.openapi.module.Module;
+import com.intellij.openapi.project.Project;
 import com.intellij.util.xmlb.XmlSerializerUtil;
 
 /**
@@ -14,32 +10,31 @@ import com.intellij.util.xmlb.XmlSerializerUtil;
  *         Date: Apr 5, 2010
  */
 
-@ProjectService
 @State(
-		name = "PbCompilerConfiguration",
-		storages = {
-				@Storage(file = StoragePathMacros.PROJECT_FILE),
-				@Storage(file = StoragePathMacros.PROJECT_CONFIG_DIR + "/compiler.xml", scheme = StorageScheme.DIRECTORY_BASED)
-		})
-public class PbCompilerConfiguration implements PersistentStateComponent<PbCompilerConfiguration>
-{
-	public boolean COMPILATION_ENABLED;
-	public String PATH_TO_COMPILER = "";
+    name = "PbCompilerConfiguration",
+    storages = {
+        @Storage(file = StoragePathMacros.PROJECT_FILE),
+        @Storage(file = StoragePathMacros.PROJECT_CONFIG_DIR + "/compiler.xml", scheme = StorageScheme.DIRECTORY_BASED)
+    })
+public class PbCompilerConfiguration implements PersistentStateComponent<PbCompilerConfiguration> {
+  public static PbCompilerConfiguration getInstance(Project project) {
+    return ServiceManager.getService(project, PbCompilerConfiguration.class);
+  }
 
-	public String getCompilerOutput(Module module)
-	{
-		return module.getModuleDirPath(); //TODO [VISTALL]
-	}
+  public boolean COMPILATION_ENABLED;
+  public String PATH_TO_COMPILER = "";
 
-	@Override
-	public PbCompilerConfiguration getState()
-	{
-		return this;
-	}
+  public String getCompilerOutput(Module module) {
+    return module.getModuleDirPath(); //TODO [VISTALL]
+  }
 
-	@Override
-	public void loadState(PbCompilerConfiguration state)
-	{
-		XmlSerializerUtil.copyBean(state, this);
-	}
+  @Override
+  public PbCompilerConfiguration getState() {
+    return this;
+  }
+
+  @Override
+  public void loadState(PbCompilerConfiguration state) {
+    XmlSerializerUtil.copyBean(state, this);
+  }
 }

@@ -1,34 +1,23 @@
 package protobuf.lang.psi.impl.reference;
 
 import com.intellij.lang.ASTNode;
-import com.intellij.openapi.application.ApplicationInfo;
 import com.intellij.openapi.diagnostic.Logger;
-import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.TextRange;
-import com.intellij.openapi.util.io.FileUtil;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiElementFactory;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiReference;
-import com.intellij.psi.impl.PsiElementFactoryImpl;
 import com.intellij.psi.impl.source.resolve.ResolveCache;
 import com.intellij.psi.search.FilenameIndex;
-import com.intellij.psi.tree.IElementType;
 import com.intellij.util.ArrayUtil;
 import com.intellij.util.IncorrectOperationException;
-import com.intellij.util.PathUtil;
+import org.consulo.google.protobuf.module.extension.GoogleProtobufModuleExtensionUtil;
 import org.jetbrains.annotations.NotNull;
 import protobuf.lang.PbElementTypes;
 import protobuf.lang.PbTokenTypes;
 import protobuf.lang.psi.PbPsiElementVisitor;
 import protobuf.lang.psi.api.PbFile;
-import protobuf.lang.psi.api.declaration.PbExtendDef;
-import protobuf.lang.psi.api.declaration.PbGroupDef;
-import protobuf.lang.psi.api.declaration.PbImportDef;
-import protobuf.lang.psi.api.declaration.PbPackageDef;
-import protobuf.lang.psi.api.declaration.PbServiceMethodDef;
+import protobuf.lang.psi.api.declaration.*;
 import protobuf.lang.psi.api.member.PbFieldType;
 import protobuf.lang.psi.api.member.PbOptionRefSeq;
 import protobuf.lang.psi.api.reference.PbRef;
@@ -39,12 +28,8 @@ import protobuf.util.PbFileUtil;
 import protobuf.util.PbTextUtil;
 
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
-import static protobuf.lang.PbElementTypes.CLOSE_PARENTHESIS;
-import static protobuf.lang.PbElementTypes.DOT;
-import static protobuf.lang.PbElementTypes.IK;
+import static protobuf.lang.PbElementTypes.*;
 import static protobuf.lang.psi.PbPsiEnums.CompletionKind;
 import static protobuf.lang.psi.PbPsiEnums.ReferenceKind;
 
@@ -58,7 +43,6 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
 
     private static final ExperimentalResolver expResolver = new ExperimentalResolver();
     
-    private static ResolveCache resolveCache = null;
 
     @Override
     public String toString() {
@@ -221,7 +205,9 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
 
     @Override
     public PsiElement bindToElement(@NotNull PsiElement psiElement) throws IncorrectOperationException {
-        final IElementType elementType = getNode().getElementType();
+       /*
+       //TODO [VISTALL]
+       final IElementType elementType = getNode().getElementType();
         if ((elementType == PbElementTypes.IMPORT_DECL || elementType == PbElementTypes.IMPORT_REF) && psiElement instanceof PsiFile) {
             // The file to which the import reference points is moving.  Get the new path and change the import reference
             // text to the new relative path to the file.
@@ -244,13 +230,13 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             PsiElement newEl = factory.createDummyHolder(("\"" + relativePathToContainingFile + "\""), elementType, getContext());
             return this.replace(newEl);
             */
-
+         /*
             PsiElement newEl = factory.createDummyHolder(("import \"" + relativePathToContainingFile + "\";"), PbElementTypes.IMPORT_DECL, getContext());
             newEl = newEl.getFirstChild(); // The first child of the dummy holder is the element we need.
             PsiElement newImportEl = this.getParent().replace(newEl);
             PsiElement newImportRefEl = newImportEl.getFirstChild();
             return newImportRefEl;
-        }
+        }  */
 
         throw new IncorrectOperationException("Cannot bind to element: " + psiElement);
     }
@@ -259,57 +245,11 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
     public boolean isReferenceTo(PsiElement psiElement) {
         return getManager().areElementsEquivalent(psiElement, resolve());
     }
-    
-    private ResolveCache getResolveCache() {
-        if (null == resolveCache) {
-            String appVersion = ApplicationInfo.getInstance().getMajorVersion();
-            Integer appVersionNum = null;
-            try {
-                appVersionNum = Integer.parseInt(appVersion);
-            } catch (NumberFormatException e) {
-                LOG.error("Could not parse app version number from version string: " + appVersion, e);
-            }
-            if ((appVersionNum != null && appVersionNum >= 11) || ("11".equals(appVersion) || "12".equals(appVersion))) {
-                // The IDEA 11 way: ResolveCache.getInstance(getProject());
-                try {
-                    Class resolveCacheClass = Class.forName("com.intellij.psi.impl.source.resolve.ResolveCache");
-                    Method m = resolveCacheClass.getDeclaredMethod("getInstance", new Class[] { Project.class });
-                    try {
-                        resolveCache = (ResolveCache)m.invoke(null, getProject());
-                    } catch (IllegalAccessException e) {
-                        LOG.error("Could not access the 'getInstance' method on the ResolveCache class", e);
-                    } catch (InvocationTargetException e) {
-                        LOG.error("Could not invoke the 'getInstance' method on the ResolveCache class", e);
-                    }
-                } catch (ClassNotFoundException e) {
-                    LOG.error("Could not find the ResolveCache class!", e); // Now, this is a problem.
-                } catch (NoSuchMethodException e) {
-                    LOG.info("Could not resolve the ResolveCache#getInstance method.", e);
-                }
-            } else if ("10".equals(appVersion)) {
-                // The IDEA 10 way: getManager().getResolveCache();
-                Class managerClass = getManager().getClass();
-                try {
-                    Method m = managerClass.getDeclaredMethod("getResolveCache");
-                    try {
-                        resolveCache = (ResolveCache)m.invoke(managerClass);
-                    } catch (IllegalAccessException e) {
-                        LOG.error("Could not access the 'getResolveCache' method on the PsiManagerEx class", e);
-                    } catch (InvocationTargetException e) {
-                        LOG.error("Could not invoke the 'getResolveCache' method on the PsiManagerEx class", e);
-                    }
-                } catch (NoSuchMethodException e) {
-                    LOG.error("Could not find the 'getResolveCache' method.", e);
-                }
-            }
-        }
-        return resolveCache;
-    }
 
-    @Override
+  @Override
     public PsiElement resolve() {
         PsiElement el = null;
-        ResolveCache rc = getResolveCache();
+    ResolveCache rc = ResolveCache.getInstance(getProject());
         if (rc != null) {
             el = rc.resolveWithCaching(this, expResolver, true, false);
         } else {
@@ -478,8 +418,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                 }
                 case PACKAGE: {
                     String qualifiedName = PbPsiUtil.getQualifiedReferenceText(ref);
-                    JavaPsiFacade facade = JavaPsiFacade.getInstance(ref.getManager().getProject());
-                    return facade.findPackage(qualifiedName);
+                    return GoogleProtobufModuleExtensionUtil.findPackage(refElement.getElement(), qualifiedName);
                 }
                 case MESSAGE_OR_GROUP:
                 case MESSAGE_OR_ENUM_OR_GROUP:

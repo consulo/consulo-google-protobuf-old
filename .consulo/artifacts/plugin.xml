@@ -1,0 +1,27 @@
+<component name="ArtifactManager">
+  <artifact name="plugin">
+    <output-path>$PROJECT_DIR$/out/artifacts/plugin</output-path>
+    <root id="root">
+      <element id="directory" name="google-protobuf">
+        <element id="directory" name="lib">
+          <element id="zip-archive" name="google-protobuf.jar">
+            <element id="module-output" name="consulo-google-protobuf" />
+            <element id="directory" name="META-INF">
+              <element id="dir-copy" path="$PROJECT_DIR$/META-INF" />
+            </element>
+          </element>
+        </element>
+      </element>
+      <element id="directory" name="google-protobuf-java">
+        <element id="directory" name="lib">
+          <element id="zip-archive" name="google-protobuf-java.jar">
+            <element id="module-output" name="consulo-google-protobuf-java" />
+            <element id="directory" name="META-INF">
+              <element id="dir-copy" path="$PROJECT_DIR$/consulo-google-protobuf-java/META-INF" />
+            </element>
+          </element>
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -6,6 +6,7 @@
 	<category>Custom Languages</category>
 	<depends>org.consulo.java</depends>
 	<extensions defaultExtensionNs="com.intellij">
+		<iconDescriptorUpdater implementation="org.consulo.google.protobuf.PbIconDescriptorUpdater" />
 		<fileTemplateGroup implementation="protobuf.PbFileTemplateProvider"/>
 		<fileTypeFactory implementation="protobuf.file.PbFileTypeFactory"/>
 		<syntaxHighlighter key="Protobuf" implementationClass="protobuf.highlighter.PbSyntaxHighlighter"/>

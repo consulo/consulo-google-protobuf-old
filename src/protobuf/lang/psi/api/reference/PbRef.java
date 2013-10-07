@@ -9,7 +9,7 @@ import protobuf.lang.psi.PbPsiEnums;
  * @author Nikolay Matveev
  * Date: Mar 30, 2010
  */
-public interface PbRef extends PsiReference, PsiQualifiedReference {
+public interface PbRef extends PsiReference, PsiQualifiedReference, PsiElement {
 
     String getReferenceName();
 

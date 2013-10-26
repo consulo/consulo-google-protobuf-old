@@ -15,7 +15,7 @@
       </module>
       <module name="consulo-google-protobuf-java" dirurl="file://$PROJECT_DIR$/consulo-google-protobuf-java">
         <extension id="java" sdk-module-name="consulo-google-protobuf" sdk-name="" language-level-module-name="consulo-google-protobuf" language-level-name="" special-dir-location="MODULE_DIR" />
-        <extension id="consulo-plugin" sdk-module-name="consulo-google-protobuf" sdk-name="" custom-plugin-dir-url="H:\github.com\consulo\consulo-google-protobuf\dep" />
+        <extension id="consulo-plugin" sdk-module-name="consulo-google-protobuf" sdk-name="" custom-plugin-dir-url="file://$MODULE_DIR$/../dep" />
         <content url="file://$MODULE_DIR$">
           <content-folder type="PRODUCTION" url="file://$MODULE_DIR$/src" />
         </content>

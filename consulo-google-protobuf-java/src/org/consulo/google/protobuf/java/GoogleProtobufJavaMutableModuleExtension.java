@@ -14,12 +14,9 @@ import com.intellij.openapi.roots.ModifiableRootModel;
  */
 public class GoogleProtobufJavaMutableModuleExtension extends GoogleProtobufJavaModuleExtension implements MutableModuleExtension<GoogleProtobufJavaModuleExtension>
 {
-	private GoogleProtobufJavaModuleExtension myOriginalExtension;
-
-	public GoogleProtobufJavaMutableModuleExtension(@NotNull String id, @NotNull Module module, GoogleProtobufJavaModuleExtension googleProtobufJavaModuleExtension)
+	public GoogleProtobufJavaMutableModuleExtension(@NotNull String id, @NotNull Module module)
 	{
 		super(id, module);
-		myOriginalExtension = googleProtobufJavaModuleExtension;
 	}
 
 	@Nullable
@@ -36,14 +33,8 @@ public class GoogleProtobufJavaMutableModuleExtension extends GoogleProtobufJava
 	}
 
 	@Override
-	public boolean isModified()
+	public boolean isModified(@NotNull GoogleProtobufJavaModuleExtension extension)
 	{
-		return myIsEnabled != myOriginalExtension.isEnabled();
-	}
-
-	@Override
-	public void commit()
-	{
-		myOriginalExtension.commit(this);
+		return myIsEnabled != extension.isEnabled();
 	}
 }

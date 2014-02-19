@@ -2,9 +2,10 @@
     <id>org.consulo.google.protobuf</id>
 	<vendor>Strintec</vendor>
 	<name>Google Protobuf</name>
-	<version>0.5.4</version>
+	<version>SNAPSHOT</version>
 	<category>Custom Languages</category>
-	<depends>org.consulo.java</depends>
+	<depends config-file="org.consulo.java.xml" optional="true">org.consulo.java</depends>
+
 	<extensions defaultExtensionNs="com.intellij">
 		<iconDescriptorUpdater implementation="org.consulo.google.protobuf.PbIconDescriptorUpdater" />
 		<fileTemplateGroup implementation="protobuf.PbFileTemplateProvider"/>

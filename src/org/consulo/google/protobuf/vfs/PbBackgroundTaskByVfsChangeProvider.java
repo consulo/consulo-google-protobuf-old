@@ -14,7 +14,7 @@ import com.intellij.openapi.vfs.VirtualFile;
  * @author VISTALL
  * @since 07.10.13.
  */
-public class PbBackgroundTaskByVfsChangeProvider implements BackgroundTaskByVfsChangeProvider
+public class PbBackgroundTaskByVfsChangeProvider extends BackgroundTaskByVfsChangeProvider
 {
 	@NotNull
 	@Override

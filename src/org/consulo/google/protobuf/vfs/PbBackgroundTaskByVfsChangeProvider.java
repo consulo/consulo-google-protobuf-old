@@ -1,13 +1,12 @@
 package org.consulo.google.protobuf.vfs;
 
-import org.consulo.google.protobuf.module.extension.GoogleProtobufModuleExtension;
+import org.consulo.google.protobuf.module.extension.GoogleProtobufModuleExtensionUtil;
+import org.consulo.google.protobuf.module.extension.GoogleProtobufSupportProvider;
 import org.consulo.vfs.backgroundTask.BackgroundTaskByVfsChangeProvider;
 import org.consulo.vfs.backgroundTask.BackgroundTaskByVfsParameters;
 import org.jetbrains.annotations.NotNull;
-import com.intellij.openapi.module.Module;
-import com.intellij.openapi.module.ModuleUtilCore;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.util.SystemInfo;
+import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 
 /**
@@ -26,25 +25,19 @@ public class PbBackgroundTaskByVfsChangeProvider extends BackgroundTaskByVfsChan
 	@Override
 	public boolean validate(@NotNull Project project, @NotNull VirtualFile virtualFile)
 	{
-		Module moduleForFile = ModuleUtilCore.findModuleForFile(virtualFile, project);
-		if(moduleForFile == null)
-		{
-			return false;
-		}
-
-		return ModuleUtilCore.getExtension(moduleForFile, GoogleProtobufModuleExtension.class) != null;
+		return GoogleProtobufModuleExtensionUtil.getProvider(project, virtualFile) != null;
 	}
 
 	@Override
 	public void setDefaultParameters(@NotNull Project project, @NotNull VirtualFile virtualFile, @NotNull BackgroundTaskByVfsParameters backgroundTaskByVfsParameters)
 	{
-		Module moduleForFile = ModuleUtilCore.findModuleForFile(virtualFile, project);
-		assert moduleForFile != null;
-		GoogleProtobufModuleExtension extension = ModuleUtilCore.getExtension(moduleForFile, GoogleProtobufModuleExtension.class);
-		assert extension != null;
+		GoogleProtobufSupportProvider provider = GoogleProtobufModuleExtensionUtil.getProvider(project, virtualFile);
 
-		backgroundTaskByVfsParameters.setExePath(SystemInfo.isWindows ? "protoc.exe" : "protoc");
-		backgroundTaskByVfsParameters.setProgramParameters("--" + extension.getCompileParameter() + "=. $FileName$");
+		assert provider != null;
+
+		backgroundTaskByVfsParameters.setExePath(provider.getExePath());
+
+		backgroundTaskByVfsParameters.setProgramParameters(StringUtil.join(provider.getAdditionalArguments(), " "));
 		backgroundTaskByVfsParameters.setWorkingDirectory("$FileParentPath$");
 		backgroundTaskByVfsParameters.setOutPath("$FileParentPath$");
 	}

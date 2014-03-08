@@ -1,6 +1,0 @@
-<idea-plugin>
-	<extensions defaultExtensionNs="com.intellij">
-		<moduleExtensionProvider key="google-protobuf-java" parent-key="java"
-								 implementationClass="org.consulo.google.protobuf.java.GoogleProtobufJavaModuleExtensionProvider"/>
-	</extensions>
-</idea-plugin>

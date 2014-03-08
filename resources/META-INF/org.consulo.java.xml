@@ -1,0 +1,5 @@
+<idea-plugin>
+	<extensions defaultExtensionNs="org.consulo.google.protobuf">
+		<supportProvider implementation="org.consulo.google.protobuf.java.JavaGoogleProtobufSupportProvider" />
+	</extensions>
+</idea-plugin>

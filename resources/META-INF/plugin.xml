@@ -1,13 +1,17 @@
 <idea-plugin version="2">
-    <id>org.consulo.google.protobuf</id>
+	<id>org.consulo.google.protobuf</id>
 	<vendor>Strintec</vendor>
 	<name>Google Protobuf</name>
 	<version>SNAPSHOT</version>
 	<category>Custom Languages</category>
 	<depends config-file="org.consulo.java.xml" optional="true">org.consulo.java</depends>
 
+	<extensionPoints>
+		<extensionPoint name="supportProvider" interface="org.consulo.google.protobuf.module.extension.GoogleProtobufSupportProvider"/>
+	</extensionPoints>
+
 	<extensions defaultExtensionNs="com.intellij">
-		<iconDescriptorUpdater implementation="org.consulo.google.protobuf.PbIconDescriptorUpdater" />
+		<iconDescriptorUpdater implementation="org.consulo.google.protobuf.PbIconDescriptorUpdater"/>
 		<fileTemplateGroup implementation="protobuf.PbFileTemplateProvider"/>
 		<fileTypeFactory implementation="protobuf.file.PbFileTypeFactory"/>
 		<syntaxHighlighter key="Protobuf" implementationClass="protobuf.highlighter.PbSyntaxHighlighter"/>
@@ -19,6 +23,6 @@
 		<lang.foldingBuilder language="Protobuf" implementationClass="protobuf.folding.PbFoldingBuilder"/>
 		<lang.findUsagesProvider language="Protobuf" implementationClass="protobuf.findUsages.PbFindUsagesProvider"/>
 		<lang.psiStructureViewFactory language="Protobuf" implementationClass="protobuf.structureView.PbStructureViewBuilderProvider"/>
-		<taskByVfsChange filetype="Protobuf" implementationClass="org.consulo.google.protobuf.vfs.PbBackgroundTaskByVfsChangeProvider" />
+		<taskByVfsChange filetype="Protobuf" implementationClass="org.consulo.google.protobuf.vfs.PbBackgroundTaskByVfsChangeProvider"/>
 	</extensions>
 </idea-plugin>

@@ -1,18 +1,28 @@
 package protobuf.lang.psi.api;
 
+import org.jetbrains.annotations.NotNull;
 import com.intellij.psi.PsiFile;
 import protobuf.lang.psi.api.declaration.PbImportDef;
+import protobuf.lang.psi.api.declaration.PbMessageDef;
 import protobuf.lang.psi.api.declaration.PbPackageDef;
+import protobuf.lang.psi.api.member.PbOptionAssignment;
 
 /**
  * @author Nikolay Matveev
  */
 
-public interface PbFile extends PsiFile, PbPsiElement{        
+public interface PbFile extends PsiFile, PbPsiElement
+{
+	PbPackageDef getPackageDefinition();
 
-    PbPackageDef getPackageDefinition();
+	String getPackageName();
 
-    String getPackageName();
+	@NotNull
+	PbOptionAssignment[] getOptions();
 
-    PbImportDef[] getImportDefinitions();   
+	@NotNull
+	PbImportDef[] getImportDefinitions();
+
+	@NotNull
+	PbMessageDef[] getMessageDefinitions();
 }

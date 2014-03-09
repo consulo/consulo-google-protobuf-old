@@ -6,6 +6,7 @@ import org.jetbrains.annotations.Nullable;
 import com.intellij.openapi.extensions.ExtensionPointName;
 import com.intellij.openapi.module.Module;
 import com.intellij.psi.PsiElement;
+import protobuf.lang.psi.api.PbFile;
 
 /**
  * @author VISTALL
@@ -26,4 +27,7 @@ public interface GoogleProtobufSupportProvider
 
 	@NotNull
 	String[] getAdditionalArguments();
+
+	@NotNull
+	String[] getGeneratedFiles(@NotNull PbFile pbFile);
 }

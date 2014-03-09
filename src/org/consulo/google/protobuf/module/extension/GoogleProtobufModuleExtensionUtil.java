@@ -21,15 +21,7 @@ public class GoogleProtobufModuleExtensionUtil
 			return null;
 		}
 
-		GoogleProtobufSupportProvider protobufSupportProvider = null;
-		for(GoogleProtobufSupportProvider googleProtobufSupportProvider : GoogleProtobufSupportProvider.EP_NAME.getExtensions())
-		{
-			if(ModuleUtilCore.getExtension(moduleForFile, googleProtobufSupportProvider.getExtensionClass()) != null)
-			{
-				protobufSupportProvider = googleProtobufSupportProvider;
-				break;
-			}
-		}
+		GoogleProtobufSupportProvider protobufSupportProvider = getProvider(psiElement);
 
 		if(protobufSupportProvider == null)
 		{
@@ -37,6 +29,30 @@ public class GoogleProtobufModuleExtensionUtil
 		}
 
 		return protobufSupportProvider.findPackage(moduleForFile, name);
+	}
+
+
+	@Nullable
+	public static GoogleProtobufSupportProvider getProvider(@Nullable PsiElement element)
+	{
+		if(element == null)
+		{
+			return null;
+		}
+		Module moduleForFile = ModuleUtilCore.findModuleForPsiElement(element);
+		if(moduleForFile == null)
+		{
+			return null;
+		}
+
+		for(GoogleProtobufSupportProvider googleProtobufSupportProvider : GoogleProtobufSupportProvider.EP_NAME.getExtensions())
+		{
+			if(ModuleUtilCore.getExtension(moduleForFile, googleProtobufSupportProvider.getExtensionClass()) != null)
+			{
+				return googleProtobufSupportProvider;
+			}
+		}
+		return null;
 	}
 
 	@Nullable

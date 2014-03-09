@@ -8,6 +8,9 @@ import org.jetbrains.annotations.NotNull;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.psi.PsiFile;
+import com.intellij.util.ArrayUtil;
+import protobuf.lang.psi.api.PbFile;
 
 /**
  * @author VISTALL
@@ -40,5 +43,22 @@ public class PbBackgroundTaskByVfsChangeProvider extends BackgroundTaskByVfsChan
 		backgroundTaskByVfsParameters.setProgramParameters(StringUtil.join(provider.getAdditionalArguments(), " "));
 		backgroundTaskByVfsParameters.setWorkingDirectory("$FileParentPath$");
 		backgroundTaskByVfsParameters.setOutPath("$FileParentPath$");
+	}
+
+
+	@NotNull
+	@Override
+	public String[] getGeneratedFiles(@NotNull PsiFile psiFile)
+	{
+		if(!(psiFile instanceof PbFile))
+		{
+			return ArrayUtil.EMPTY_STRING_ARRAY;
+		}
+		GoogleProtobufSupportProvider provider = GoogleProtobufModuleExtensionUtil.getProvider(psiFile);
+		if(provider == null )
+		{
+			return ArrayUtil.EMPTY_STRING_ARRAY;
+		}
+		return provider.getGeneratedFiles((PbFile) psiFile);
 	}
 }

@@ -10,6 +10,7 @@ import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import com.intellij.util.ArrayUtil;
+import protobuf.file.PbFileType;
 import protobuf.lang.psi.api.PbFile;
 
 /**
@@ -20,7 +21,7 @@ public class PbBackgroundTaskByVfsChangeProvider extends BackgroundTaskByVfsChan
 {
 	@NotNull
 	@Override
-	public String getName()
+	public String getTemplateName()
 	{
 		return "Google Protobuf";
 	}
@@ -28,7 +29,7 @@ public class PbBackgroundTaskByVfsChangeProvider extends BackgroundTaskByVfsChan
 	@Override
 	public boolean validate(@NotNull Project project, @NotNull VirtualFile virtualFile)
 	{
-		return GoogleProtobufModuleExtensionUtil.getProvider(project, virtualFile) != null;
+		return GoogleProtobufModuleExtensionUtil.getProvider(project, virtualFile) != null && virtualFile.getFileType() == PbFileType.PROTOBUF_FILE_TYPE;
 	}
 
 	@Override

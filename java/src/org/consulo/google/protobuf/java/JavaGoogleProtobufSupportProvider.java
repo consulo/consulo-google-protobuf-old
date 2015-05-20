@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.consulo.google.protobuf.module.extension.GoogleProtobufSupportProvider;
-import org.consulo.java.module.extension.JavaModuleExtension;
 import org.consulo.module.extension.ModuleExtension;
 import org.consulo.psi.PsiPackage;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.mustbe.consulo.java.module.extension.JavaModuleExtension;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.util.SystemInfo;
 import com.intellij.openapi.util.text.StringUtil;

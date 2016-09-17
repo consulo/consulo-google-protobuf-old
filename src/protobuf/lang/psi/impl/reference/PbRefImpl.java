@@ -11,7 +11,7 @@ import com.intellij.psi.impl.source.resolve.ResolveCache;
 import com.intellij.psi.search.FilenameIndex;
 import com.intellij.util.ArrayUtil;
 import com.intellij.util.IncorrectOperationException;
-import org.consulo.google.protobuf.module.extension.GoogleProtobufModuleExtensionUtil;
+import consulo.google.protobuf.module.extension.GoogleProtobufModuleExtensionUtil;
 import org.jetbrains.annotations.NotNull;
 import protobuf.lang.PbElementTypes;
 import protobuf.lang.PbTokenTypes;

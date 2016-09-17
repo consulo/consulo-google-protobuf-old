@@ -1,4 +1,4 @@
-package org.consulo.google.protobuf.module.extension;
+package consulo.google.protobuf.module.extension;
 
 import org.jetbrains.annotations.Nullable;
 import com.intellij.openapi.module.Module;

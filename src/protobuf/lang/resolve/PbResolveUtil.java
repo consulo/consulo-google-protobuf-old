@@ -1,16 +1,20 @@
 package protobuf.lang.resolve;
 
+import static protobuf.lang.psi.PbPsiEnums.ReferenceKind;
+
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiNamedElement;
-import org.consulo.psi.PsiPackage;
+import consulo.psi.PsiPackage;
 import protobuf.lang.psi.api.PbFile;
 import protobuf.lang.psi.api.block.PbBlock;
-import protobuf.lang.psi.api.declaration.*;
+import protobuf.lang.psi.api.declaration.PbEnumDef;
+import protobuf.lang.psi.api.declaration.PbExtendDef;
+import protobuf.lang.psi.api.declaration.PbFieldDef;
+import protobuf.lang.psi.api.declaration.PbGroupDef;
+import protobuf.lang.psi.api.declaration.PbMessageDef;
 import protobuf.lang.psi.api.reference.PbRef;
 import protobuf.lang.psi.utils.PbPsiUtil;
-
-import static protobuf.lang.psi.PbPsiEnums.ReferenceKind;
 
 /**
  * @author Nikolay Matveev
@@ -18,7 +22,6 @@ import static protobuf.lang.psi.PbPsiEnums.ReferenceKind;
  */
 public abstract class PbResolveUtil
 {
-
 	private final static Logger LOG = Logger.getInstance(PbResolveUtil.class.getName());
 
 	public static PsiElement resolveInScope(final PsiElement scope, final PbRef ref)
@@ -73,7 +76,7 @@ public abstract class PbResolveUtil
 					PbFile containingFile = (PbFile) ref.getContainingFile();
 					//resolve in subpackages scope
 					//alg: find subpackage and then find it in subpackages
-          PsiPackage subPackage = resolveInSubPackagesScope((PsiPackage) scope, refName);
+					PsiPackage subPackage = resolveInSubPackagesScope((PsiPackage) scope, refName);
 					if(subPackage != null)
 					{
 						//f(subPackage, thisFile) -> boolean
@@ -179,7 +182,9 @@ public abstract class PbResolveUtil
 				case MESSAGE_OR_GROUP_FIELD:
 				{
 					if(scope instanceof PbFile)
+					{
 						assert false;
+					}
 					PsiElement[] children = scope.getChildren();
 					for(PsiElement child : children)
 					{
@@ -204,7 +209,7 @@ public abstract class PbResolveUtil
 
 	public static PsiPackage resolveInSubPackagesScope(final PsiPackage parentPackage, String refName)
 	{
-    PsiPackage[] subPackages = parentPackage.getSubPackages();
+		PsiPackage[] subPackages = parentPackage.getSubPackages();
 		for(PsiPackage subPackage : subPackages)
 		{
 			if(subPackage.getName().equals(refName))

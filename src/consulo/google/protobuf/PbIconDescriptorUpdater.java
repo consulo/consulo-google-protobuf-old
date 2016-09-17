@@ -1,9 +1,9 @@
-package org.consulo.google.protobuf;
+package consulo.google.protobuf;
 
 import org.jetbrains.annotations.NotNull;
-import com.intellij.ide.IconDescriptor;
-import com.intellij.ide.IconDescriptorUpdater;
 import com.intellij.psi.PsiElement;
+import consulo.ide.IconDescriptor;
+import consulo.ide.IconDescriptorUpdater;
 import protobuf.PbIcons;
 import protobuf.lang.psi.api.declaration.PbEnumConstantDef;
 import protobuf.lang.psi.api.declaration.PbEnumDef;

@@ -1,15 +1,15 @@
-package org.consulo.google.protobuf.vfs;
+package consulo.google.protobuf.vfs;
 
-import org.consulo.google.protobuf.module.extension.GoogleProtobufModuleExtensionUtil;
-import org.consulo.google.protobuf.module.extension.GoogleProtobufSupportProvider;
+import consulo.google.protobuf.module.extension.GoogleProtobufModuleExtensionUtil;
+import consulo.google.protobuf.module.extension.GoogleProtobufSupportProvider;
 import org.jetbrains.annotations.NotNull;
-import org.mustbe.consulo.vfs.backgroundTask.BackgroundTaskByVfsChangeProvider;
-import org.mustbe.consulo.vfs.backgroundTask.BackgroundTaskByVfsParameters;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import com.intellij.util.ArrayUtil;
+import consulo.backgroundTaskByVfsChange.BackgroundTaskByVfsChangeProvider;
+import consulo.backgroundTaskByVfsChange.BackgroundTaskByVfsParameters;
 import protobuf.file.PbFileType;
 import protobuf.lang.psi.api.PbFile;
 

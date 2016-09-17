@@ -1,11 +1,11 @@
-package org.consulo.google.protobuf.module.extension;
+package consulo.google.protobuf.module.extension;
 
-import org.consulo.module.extension.ModuleExtension;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import com.intellij.openapi.extensions.ExtensionPointName;
 import com.intellij.openapi.module.Module;
 import com.intellij.psi.PsiElement;
+import consulo.module.extension.ModuleExtension;
 import protobuf.lang.psi.api.PbFile;
 
 /**
@@ -14,7 +14,7 @@ import protobuf.lang.psi.api.PbFile;
  */
 public interface GoogleProtobufSupportProvider
 {
-	ExtensionPointName<GoogleProtobufSupportProvider> EP_NAME = ExtensionPointName.create("org.consulo.google.protobuf.supportProvider");
+	ExtensionPointName<GoogleProtobufSupportProvider> EP_NAME = ExtensionPointName.create("consulo.google.protobuf.supportProvider");
 
 	@NotNull
 	Class<? extends ModuleExtension> getExtensionClass();

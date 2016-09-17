@@ -4,8 +4,8 @@
     <modules>
       <module name="consulo-google-protobuf" dirurl="file://$PROJECT_DIR$" current-layer="Default">
         <module-layer name="Default">
-          <extension id="consulo-plugin" sdk-module-name="" sdk-name="Consulo 1.SNAPSHOT" />
-          <extension id="java" sdk-module-name="" sdk-name="1.6" language-level-module-name="" language-level-name="JDK_1_6" special-dir-location="SOURCE_DIR" />
+          <extension id="consulo-plugin" sdk-module-name="" sdk-name="Consulo SNAPSHOT" />
+          <extension id="java" sdk-module-name="" sdk-name="1.8" language-level-module-name="" language-level-name="JDK_1_8" special-dir-location="SOURCE_DIR" />
           <content url="file://$MODULE_DIR$">
             <content-folder type="PRODUCTION_RESOURCE" url="file://$MODULE_DIR$/resources" />
             <content-folder type="PRODUCTION" url="file://$MODULE_DIR$/src" />
@@ -17,7 +17,7 @@
       </module>
       <module name="java" dirurl="file://$PROJECT_DIR$/java" current-layer="Default">
         <module-layer name="Default">
-          <extension id="consulo-plugin" sdk-module-name="consulo-google-protobuf" sdk-name="" custom-plugin-dir-url="file://$MODULE_DIR$/../dep" />
+          <extension id="consulo-plugin" sdk-module-name="consulo-google-protobuf" sdk-name="" />
           <extension id="java" sdk-module-name="consulo-google-protobuf" sdk-name="" language-level-module-name="consulo-google-protobuf" language-level-name="" special-dir-location="SOURCE_DIR" />
           <content url="file://$MODULE_DIR$">
             <content-folder type="PRODUCTION" url="file://$MODULE_DIR$/src" />
@@ -35,6 +35,7 @@
               </binaries>
             </library>
           </orderEntry>
+          <orderEntry type="library" name="consulo-plugin: consulo.java" level="project" />
         </module-layer>
       </module>
     </modules>

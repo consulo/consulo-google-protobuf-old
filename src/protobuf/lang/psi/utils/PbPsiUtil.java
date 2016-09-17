@@ -1,5 +1,12 @@
 package protobuf.lang.psi.utils;
 
+import static protobuf.lang.PbElementTypes.COMMENTS;
+import static protobuf.lang.PbElementTypes.WHITE_SPACES;
+
+import java.util.ArrayList;
+
+import consulo.google.protobuf.module.extension.GoogleProtobufModuleExtensionUtil;
+import org.jetbrains.annotations.NotNull;
 import com.intellij.lang.ASTNode;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.project.Project;
@@ -7,21 +14,18 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiErrorElement;
 import com.intellij.psi.PsiFileFactory;
 import com.intellij.psi.tree.IElementType;
-import org.consulo.google.protobuf.module.extension.GoogleProtobufModuleExtensionUtil;
-import org.consulo.psi.PsiPackage;
-import org.jetbrains.annotations.NotNull;
+import consulo.psi.PsiPackage;
 import protobuf.file.PbFileType;
 import protobuf.lang.psi.api.PbFile;
 import protobuf.lang.psi.api.PbPsiElement;
 import protobuf.lang.psi.api.auxiliary.PbBlockHolder;
 import protobuf.lang.psi.api.block.PbBlock;
-import protobuf.lang.psi.api.declaration.*;
+import protobuf.lang.psi.api.declaration.PbExtendDef;
+import protobuf.lang.psi.api.declaration.PbFieldDef;
+import protobuf.lang.psi.api.declaration.PbGroupDef;
+import protobuf.lang.psi.api.declaration.PbImportDef;
+import protobuf.lang.psi.api.declaration.PbMessageDef;
 import protobuf.lang.psi.api.reference.PbRef;
-
-import java.util.ArrayList;
-
-import static protobuf.lang.PbElementTypes.COMMENTS;
-import static protobuf.lang.PbElementTypes.WHITE_SPACES;
 
 /**
  * @author Nikolay Matveev

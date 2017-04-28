@@ -1,1 +1,1 @@
-![Build Status](http://must-be.org/vulcan/statusImage?name=consulo-google-protobuf)
+[![Build Status](https://ci.consulo.io/job/consulo-google-protobuf/badge/icon)](https://ci.consulo.io/job/consulo-google-protobuf/)

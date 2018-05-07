@@ -1,9 +1,8 @@
 package protobuf.file;
 
-import com.intellij.ide.fileTemplates.FileTemplateDescriptor;
 import org.jetbrains.annotations.NonNls;
-
-import javax.swing.*;
+import com.intellij.ide.fileTemplates.FileTemplateDescriptor;
+import consulo.ui.image.Image;
 
 /**
  * A file template descriptor for the ProtoFile.proto file template.
@@ -15,7 +14,7 @@ public class PbProtoFileTemplateDescriptor extends FileTemplateDescriptor {
         super(fileName);
     }
 
-    public PbProtoFileTemplateDescriptor(@NonNls String fileName, Icon icon) {
+    public PbProtoFileTemplateDescriptor(@NonNls String fileName, Image icon) {
         super(fileName, icon);
     }
 
@@ -23,5 +22,4 @@ public class PbProtoFileTemplateDescriptor extends FileTemplateDescriptor {
     public String getDisplayName() {
         return "Protobuf file";
     }
-
 }

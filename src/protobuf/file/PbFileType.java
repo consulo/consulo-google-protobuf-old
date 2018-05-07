@@ -1,12 +1,11 @@
 package protobuf.file;
 
+import org.jetbrains.annotations.NotNull;
 import com.intellij.lang.Language;
 import com.intellij.openapi.fileTypes.LanguageFileType;
-import org.jetbrains.annotations.NotNull;
+import consulo.ui.image.Image;
 import protobuf.PbIcons;
 import protobuf.PbLanguage;
-
-import javax.swing.*;
 
 /**
  * @author Nikolay Matveev
@@ -36,7 +35,7 @@ public class PbFileType extends LanguageFileType {
         return "proto";
     }
 
-    public Icon getIcon() {
+    public Image getIcon() {
         return PbIcons.FILE_TYPE;
     }
 }

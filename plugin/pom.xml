@@ -55,6 +55,7 @@
 					</packaging>
 					<dependencies>
 						<dependency>consulo.java</dependency>
+						<dependency>com.intellij.xml</dependency>
 					</dependencies>
 				</configuration>
 				<executions>
@@ -74,14 +75,13 @@
 			<groupId>${project.groupId}</groupId>
 			<artifactId>consulo.google.protobuf-protobuf.api</artifactId>
 			<version>${project.version}</version>
-			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>consulo.google.protobuf-java.impl</artifactId>
 			<version>${project.version}</version>
-			<scope>provided</scope>
+			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>

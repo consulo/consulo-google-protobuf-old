@@ -1,19 +1,20 @@
 package protobuf.lang.lexer;
 
-import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
+import com.intellij.lexer.LexerBase;
 import protobuf.lang.PbTokenTypes;
 
 %%
 
-%class _ProtobufLexer
-%implements FlexLexer, PbTokenTypes
+%class PbFlexLexer
+%extends LexerBase
+%implements PbTokenTypes
 %unicode
 %public
 
 %type IElementType
 
-%function advance
+%function advanceImpl
 
 %eof{ return;
 %eof}

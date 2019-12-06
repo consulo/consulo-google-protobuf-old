@@ -1,4 +1,4 @@
-<idea-plugin>
+<consulo-plugin>
 	<id>consulo.google.protobuf</id>
 	<name>Google Protobuf</name>
 	<version>SNAPSHOT</version>
@@ -25,4 +25,4 @@
 		<lang.psiStructureViewFactory language="Protobuf" implementationClass="protobuf.structureView.PbStructureViewBuilderProvider"/>
 		<taskByVfsChange implementation="consulo.google.protobuf.vfs.PbBackgroundTaskByVfsChangeProvider"/>
 	</extensions>
-</idea-plugin>
+</consulo-plugin>

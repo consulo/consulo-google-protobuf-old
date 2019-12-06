@@ -1,9 +1,9 @@
 package protobuf.lang.resolve;
 
-import com.intellij.openapi.util.Key;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.ResolveState;
 import com.intellij.psi.scope.PsiScopeProcessor;
+import consulo.util.dataholder.Key;
 import protobuf.lang.psi.api.reference.PbRef;
 
 /**

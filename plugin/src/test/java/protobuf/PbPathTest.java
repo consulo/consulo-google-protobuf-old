@@ -1,17 +1,17 @@
 package protobuf;
 
-import java.io.File;
-import java.io.IOException;
-
 import com.intellij.testFramework.fixtures.LightPlatformCodeInsightFixtureTestCase;
 import junit.framework.Assert;
 import protobuf.util.PbTestUtil;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * @author Nikolay Matveev
  */
 
-public class PbPathTest extends LightPlatformCodeInsightFixtureTestCase
+public abstract class PbPathTest extends LightPlatformCodeInsightFixtureTestCase
 {
 
     public void testTestDataPath() throws IOException {        

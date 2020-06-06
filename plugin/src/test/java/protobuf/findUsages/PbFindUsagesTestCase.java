@@ -1,8 +1,5 @@
 package protobuf.findUsages;
 
-import java.io.File;
-import java.util.Collection;
-
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
@@ -16,11 +13,14 @@ import com.intellij.testFramework.fixtures.LightPlatformCodeInsightFixtureTestCa
 import com.intellij.util.Query;
 import protobuf.util.PbTestUtil;
 
+import java.io.File;
+import java.util.Collection;
+
 /**
  * @author Nikolay Matveev
  */
 
-public class PbFindUsagesTestCase extends LightPlatformCodeInsightFixtureTestCase
+public abstract class PbFindUsagesTestCase extends LightPlatformCodeInsightFixtureTestCase
 {
     @Override
     protected String getBasePath() {

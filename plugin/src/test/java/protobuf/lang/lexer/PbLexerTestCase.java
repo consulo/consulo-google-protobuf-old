@@ -11,7 +11,7 @@ import protobuf.util.PbTestUtil;
  * @author Nikolay Matveev
  */
 
-public class PbLexerTestCase extends LightPlatformCodeInsightFixtureTestCase
+public abstract class PbLexerTestCase extends LightPlatformCodeInsightFixtureTestCase
 {
 
     protected String getBasePath() {

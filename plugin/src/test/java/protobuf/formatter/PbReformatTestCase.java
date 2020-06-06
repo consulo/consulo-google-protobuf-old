@@ -12,7 +12,7 @@ import protobuf.util.PbTestUtil;
  * @author Nikolay Matveev
  */
 
-public class PbReformatTestCase extends PbFormatterTestCase {
+public abstract class PbReformatTestCase extends PbFormatterTestCase {
     @Override
     protected String getBasePath() {
         return super.getBasePath() + "reformat/";

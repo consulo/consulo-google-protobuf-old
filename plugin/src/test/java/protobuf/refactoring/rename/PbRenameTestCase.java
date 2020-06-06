@@ -9,7 +9,7 @@ import protobuf.util.PbTestUtil;
  * @author Nikolay Matveev
  */
 
-public class PbRenameTestCase extends LightPlatformCodeInsightFixtureTestCase
+public abstract class PbRenameTestCase extends LightPlatformCodeInsightFixtureTestCase
 {
 
     @Override

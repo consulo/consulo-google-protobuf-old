@@ -11,7 +11,7 @@ import protobuf.util.PbTestUtil;
  * @author Nikolay Matveev
  */
 
-public class PbParserTestCase extends LightPlatformCodeInsightFixtureTestCase
+public abstract class PbParserTestCase extends LightPlatformCodeInsightFixtureTestCase
 {
 
     @Override

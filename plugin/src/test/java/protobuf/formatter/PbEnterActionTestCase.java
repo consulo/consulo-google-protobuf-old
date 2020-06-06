@@ -10,7 +10,7 @@ import java.io.IOException;
  * @author Nikolay Matveev
  */
 
-public class PbEnterActionTestCase extends PbFormatterTestCase {
+public abstract class PbEnterActionTestCase extends PbFormatterTestCase {
     @Override
     protected String getBasePath() {
         return super.getBasePath() + "enter_action/";

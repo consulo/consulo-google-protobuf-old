@@ -1,7 +1,5 @@
 package protobuf.lang.resolve;
 
-import java.io.File;
-
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.VfsUtil;
@@ -11,15 +9,16 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
 import com.intellij.psi.PsiReference;
 import com.intellij.testFramework.fixtures.LightPlatformCodeInsightFixtureTestCase;
-import consulo.psi.PsiPackage;
 import protobuf.util.PbTestUtil;
+
+import java.io.File;
 
 /**
  * @author Nikolay Matveev
  */
 
 
-public class PbResolveTestCase extends LightPlatformCodeInsightFixtureTestCase
+public abstract class PbResolveTestCase extends LightPlatformCodeInsightFixtureTestCase
 {
 
     private final static Logger LOG = Logger.getInstance(PbResolveTestCase.class.getName());

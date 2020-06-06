@@ -1,9 +1,5 @@
 package protobuf.lang.parser.declaration;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.util.Pair;
 import com.intellij.psi.PsiElement;
@@ -12,11 +8,15 @@ import com.intellij.testFramework.fixtures.LightPlatformCodeInsightFixtureTestCa
 import protobuf.lang.psi.api.member.PbOptionAssignment;
 import protobuf.util.PbTestUtil;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A test case to verify option assignments.
  * @author Travis Cripps
  */
-public class PbParserOptionAssignmentTestCase extends LightPlatformCodeInsightFixtureTestCase
+public abstract class PbParserOptionAssignmentTestCase extends LightPlatformCodeInsightFixtureTestCase
 {
     
     private Logger LOG = Logger.getInstance(PbParserOptionAssignmentTestCase.class);

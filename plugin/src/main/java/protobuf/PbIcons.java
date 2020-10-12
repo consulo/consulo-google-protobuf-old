@@ -1,6 +1,7 @@
 package protobuf;
 
-import com.intellij.openapi.util.IconLoader;
+import com.intellij.icons.AllIcons;
+import consulo.google.protobuf.icon.ProtobufIconGroup;
 import consulo.ui.image.Image;
 
 /**
@@ -9,12 +10,12 @@ import consulo.ui.image.Image;
  */
 public interface PbIcons
 {
-	Image FILE_TYPE = IconLoader.getIcon("/icons/protobuf_16.png");
-	Image MESSAGE = IconLoader.getIcon("/icons/protobuf_message_16.png");
-	Image SERVICE = IconLoader.getIcon("/icons/protobuf_service_16.png");
-	Image ENUM = IconLoader.getIcon("/icons/protobuf_enum_16.png");
-	Image SERVICE_METHOD = IconLoader.getIcon("/icons/protobuf_service_method_16.png");
-	Image FIELD = IconLoader.getIcon("/icons/protobuf_field_16.png");
-	Image GROUP = IconLoader.getIcon("/icons/protobuf_group_16.png");
-	Image ENUM_CONSTANT = IconLoader.getIcon("/icons/protobuf_enum_constant_16.png");
+	Image FILE_TYPE = ProtobufIconGroup.protobuf_16();
+	Image MESSAGE = ProtobufIconGroup.protobuf_message_16();
+	Image SERVICE = AllIcons.Nodes.Struct;
+	Image ENUM = AllIcons.Nodes.Enum;
+	Image SERVICE_METHOD = AllIcons.Nodes.Method;
+	Image FIELD = AllIcons.Nodes.Field;
+	Image GROUP = ProtobufIconGroup.protobuf_group_16();
+	Image ENUM_CONSTANT = ProtobufIconGroup.protobuf_enum_constant_16();
 }

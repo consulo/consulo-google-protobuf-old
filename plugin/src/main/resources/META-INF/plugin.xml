@@ -6,6 +6,10 @@
 	<vendor>Strintec</vendor>
 	<depends config-file="consulo.java.xml" optional="true">consulo.java</depends>
 
+	<tags>
+		<tag>serialize.framework</tag>
+	</tags>
+
 	<extensionPoints>
 		<extensionPoint name="supportProvider" interface="consulo.google.protobuf.module.extension.GoogleProtobufSupportProvider"/>
 	</extensionPoints>
